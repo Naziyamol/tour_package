@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Login &amp; signup form</title>
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    </head>
+
+    <body>
+        <!-- partial:index.partial.html -->
+        <div class="wrapper" id="vendor1">
+            <div class="form-container">
+
+                <div class="slider-tab"></div>
+            </div>
+            <div class="form-inner">
+
+                <form action="{% url 'login' %}" class="signup" method="post">
+                    {% csrf_token %}
+                    <d class="form first">
+                        <div class="title-text">
+                            <div class="title login">REGISTER</div>
+                            <div class="title signup">Signup Form</div>
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Organization Name" name="org_name" required>
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="vendor Name" name="vendor" required>
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Email Address" name="email" required>
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Mobile number" name="mobile_number" required>
+                        </div>
+                        <div class="field">
+                            <input type="password" placeholder="Password" name="password" required>
+                        </div>
+                        <div class="field">
+                            <input type="password" placeholder="Confirm password"  name="confirm_password" required>
+                        </div> 
+
+                
+
+                        <!-- <span class="title">Address Details</span>
+                        <div class="field">
+                            <input type="text" placeholder="Organization Name" >
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Email Address" >
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Mobile number" >
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Password">
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Confirm password">
+                        </div> -->
+                        <div class="field btn">
+                            <div class="btn-layer"></div>
+                            <input type="submit" value="Submit" class="backBtn">
+                        </div>
+                        <div class="signup-link">Already have an account? <a href="{% url 'login' %}">Login here</a></div>
+
+    
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- partial -->
+            <script src="{% static 'js/scripts.js' %}"></script>
+
+    </body>
+
+</html>

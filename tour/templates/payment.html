@@ -1,0 +1,31 @@
+<!-- payment.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <script>
+        var options = {
+            "key": "{{ rzp_test_8J1VViCIjHNY }}",
+            "amount": "{{ amount }}",
+            "currency": "INR",
+            "name": "Your Company Name",
+            "description": "Tour Booking Payment",
+            "order_id": "{{ order_id }}",
+            "handler": function(response){
+                window.location.href = "{% url 'payment' %}";
+            }
+        };
+        var rzp = new Razorpay(options);
+        rzp.on('payment.failed', function (response){
+            alert(response.error.code + " - " + response.error.description);
+        });
+        rzp.open();
+    </script>
+</body>
+</html>

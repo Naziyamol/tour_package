@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login  form</title>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+</head>
+<body>
+ 
+<!-- partial:index.partial.html -->
+<div class="wrapper">
+  {% if error_message %}
+  <p>{{ error_message }}</p>
+{% endif %}
+  <div class="title-text">
+    <div class="title login">Login </div>
+    <div class="title signup">Signup Form</div>
+  </div>
+  <div class="form-container">
+    <div class="form-inner">
+      <form action="{% url 'login' %}"  class="login" method="post">
+        {% csrf_token %}
+    <div class="slide-controls">
+      <input type="radio" name="user_type" id="user" value="user" checked>
+      <input type="radio" name="user_type" id="vendor" value="vendor">
+      <label for="user" class="slide user">User</label>
+      <label for="vendor" class="slide vendor">Vendor</label>
+    
+      <div class="slider-tab"></div>
+    </div>
+    
+        <div class="field">
+          <input type="text" placeholder="Email Address" name="email" required>
+        </div>
+        <div class="field">
+          <input type="password" placeholder="Password" name="password" required>
+        </div>
+        <div class="pass-link"><a href="#">Forgot password?</a></div>
+        <div class="field btn">
+          <div class="btn-layer"></div>
+          <input type="submit" value="Login">
+        </div>
+        <div class="signup-link">Create account <br><a href="{% url 'user_register' %}">Signup as user</a>&nbsp;&nbsp;
+          <a href="{% url 'vendor_register' %}">Signup as vendor</a></div>
+      </form>
+      
+      <form action="{% url 'login' %}" id="login-form" class="vendor" method="post">
+        {% csrf_token %}
+        <div class="field">
+          <input type="text" placeholder="Email Address" name="email" required>
+        </div>
+        <div class="field">
+          <input type="password" placeholder="Password" name="password" required>
+        </div>
+        <div class="pass-link"><a href="#">Forgot password?</a></div>
+        <div class="field btn">
+          <div class="btn-layer"></div>
+          <input type="submit" value="login">
+        </div>
+
+    
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- partial -->
+  <script  src="{% static 'js/scripts.js' %}"></script>
+
+</body>
+</html>

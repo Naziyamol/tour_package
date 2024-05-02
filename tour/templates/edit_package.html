@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Package</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Package</h1>
+    <form method="post" action="{% url 'edit_package' vendor.id packages.id %}">
+        {% csrf_token %}
+        <label for="destination">Name:</label>
+        <input type="text" id="name" name="name" value="{{ packages.name }}"><br>
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" name="destination" value="{{ packages.destin }}"><br>
+        
+        <label for="description">Description:</label>
+        <textarea id="description" name="description">{{ packages.desc }}</textarea><br>
+        
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" value="{{ packages.price }}"><br>
+        
+        <label for="availability">Availability:</label>
+        <input type="text" id="availability" name="availability" value="{{ packages.availability }}"><br>
+        
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

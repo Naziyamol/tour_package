@@ -1,0 +1,418 @@
+{% load static %} 
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>TravelEase</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{% static 'img/favicon.png' %}"
+    />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/gijgo.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/slicknav.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link href="{% static 'css/bootsrap.min.css' %}" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+
+
+    <style>
+
+.description p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+    </style>
+  </head>
+
+  <body>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+     <!-- Navbar & Hero Start -->
+     <div class="container-fluid bg-primary px-5 d-none d-lg-block">
+        <div class="row gx-0">
+            <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center" style="height: 45px;">
+                  
+                </div>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                <div class="d-inline-flex align-items-center" style="height: 45px;">
+                   
+    
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i class="fa fa-home me-2"></i> My Dashboard</small></a>
+                        <div class="dropdown-menu rounded">
+                            <a href="#" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
+                            <a href="#" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Inbox</a>
+                            <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Notifications</a>
+                            <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>
+                            <a href="#" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="container-fluid position-relative p-0">
+        <nav
+          class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
+        >
+          <a href="" class="navbar-brand p-0">
+            <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Traveli</h1>
+            <!-- <img src="img/logo.png" alt="Logo"> -->
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+          >
+            <span class="fa fa-bars"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+              <a href="index.html" class="nav-item nav-link active">Home</a>
+              <a href="about.html" class="nav-item nav-link">About</a>
+              <a href="services.html" class="nav-item nav-link">Services</a>
+              <a href="packages.html" class="nav-item nav-link">Packages</a>
+              <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+          </div>
+        </nav>
+                                
+    <!-- header-end -->
+    {% block content %}
+        <form action="{% url 'booking' user.id vendor.id details.id %}" method="post">
+        <div class="carousel-header">
+            <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+              <ol class="carousel-indicators">
+                <li
+                  data-bs-target="#carouselId"
+                  data-bs-slide-to="0"
+                  class="active"
+                ></li>
+                <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
+                <li data-bs-target="#carouselId" data-bs-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                  <img
+                    src="{{ image }}"
+                    class="img-fluid"
+                    alt="Image"
+                  />
+                  <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px">
+                      <h4
+                        class="text-white text-uppercase fw-bold mb-4"
+                        style="letter-spacing: 3px"
+                      >
+                   
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      <div class="destination_text text-center">
+       
+      </div>
+    </div>
+
+    <div class="destination_details_info">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-9">
+            <div class="destination_info">
+              <h1>{{details.name}}</h1>
+            <div class="destination_info"><br>
+              <h3>{{details.destin}}</h3>
+              <div class="destination_info">
+                <h3>Duration: {{details.duration}} days</h3>
+                <div class="destination_info">
+                  <h5>Price(one person): {{details.price}}</h5><br><br>
+              <h3>Package Details</h3>
+              <div class="description">
+                <p>{{details.desc}}</p>
+              </div>
+             <div >
+              </div>
+              </div>
+              </div>
+              </div>
+           
+      
+            </div>
+            <div class="bordered_1px"></div>
+            <div class="contact_join">
+      
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="submit_btn">
+                    <!--                                        <input type="submit" name="submit" class="boxed-btn4" value="Book Here">-->
+                    <!--                                        <button class="boxed-btn4" type="submit" href='pessanger_detail'>Book here</button>-->
+                    <button
+                      class="boxed-btn4"
+                      type="submit"                     
+                    >
+                      Book Here
+                    </button>
+                  </div>
+                </form>
+                  {% endblock content %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- onclick="window.location.href='pessanger_detail_def/{{dest.dest_name}}'" -->
+
+    
+     <!-- Footer Start -->
+     <div class="container-fluid footer py-5">
+        <div class="container py-5">
+          <div class="row g-5">
+            <div class="col-md-6 col-lg-6 col-xl-3">
+              <div class="footer-item d-flex flex-column">
+                <h4 class="mb-4 text-white">Get In Touch</h4>
+                <a href=""
+                  ><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a
+                >
+                <a href=""
+                  ><i class="fas fa-envelope me-2"></i> info@example.com</a
+                >
+                <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
+                <a href="" class="mb-3"
+                  ><i class="fas fa-print me-2"></i> +012 345 67890</a
+                >
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-share fa-2x text-white me-2"></i>
+                  <a
+                    class="btn-square btn btn-primary rounded-circle mx-1"
+                    href=""
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                  <a
+                    class="btn-square btn btn-primary rounded-circle mx-1"
+                    href=""
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                  <a
+                    class="btn-square btn btn-primary rounded-circle mx-1"
+                    href=""
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                  <a
+                    class="btn-square btn btn-primary rounded-circle mx-1"
+                    href=""
+                    ><i class="fab fa-linkedin-in"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+              <div class="footer-item d-flex flex-column">
+                <h4 class="mb-4 text-white">Company</h4>
+                <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
+                <a href=""><i class="fas fa-angle-right me-2"></i> Careers</a>
+                <a href=""><i class="fas fa-angle-right me-2"></i> Blog</a>
+                <a href=""><i class="fas fa-angle-right me-2"></i> Press</a>
+                <a href=""><i class="fas fa-angle-right me-2"></i> Gift Cards</a>
+                <a href=""><i class="fas fa-angle-right me-2"></i> Magazine</a>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+              <div class="footer-item d-flex flex-column">
+                <h4 class="mb-4 text-white">Support</h4>
+                <a href=""><i class="fas fa-angle-right me-2"></i> Contact</a>
+                <a href=""
+                  ><i class="fas fa-angle-right me-2"></i> Legal Notice</a
+                >
+                <a href=""
+                  ><i class="fas fa-angle-right me-2"></i> Privacy Policy</a
+                >
+                <a href=""
+                  ><i class="fas fa-angle-right me-2"></i> Terms and Conditions</a
+                >
+                <a href=""><i class="fas fa-angle-right me-2"></i> Sitemap</a>
+                <a href=""
+                  ><i class="fas fa-angle-right me-2"></i> Cookie policy</a
+                >
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+              <div class="footer-item">
+                <div class="row gy-3 gx-2 mb-4">
+                  <div class="col-xl-6">
+                    <form>
+                      <div class="form-floating">
+                        <select class="form-select bg-dark border" id="select1">
+                          <option value="1">Arabic</option>
+                          <option value="2">German</option>
+                          <option value="3">Greek</option>
+                          <option value="3">New York</option>
+                        </select>
+                        <label for="select1">English</label>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-xl-6">
+                    <form>
+                      <div class="form-floating">
+                        <select class="form-select bg-dark border" id="select1">
+                          <option value="1">USD</option>
+                          <option value="2">EUR</option>
+                          <option value="3">INR</option>
+                          <option value="3">GBP</option>
+                        </select>
+                        <label for="select1">$</label>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <h4 class="text-white mb-3">Payments</h4>
+                <div class="footer-bank-card">
+                  <a href="#" class="text-white me-2"
+                    ><i class="fab fa-cc-amex fa-2x"></i
+                  ></a>
+                  <a href="#" class="text-white me-2"
+                    ><i class="fab fa-cc-visa fa-2x"></i
+                  ></a>
+                  <a href="#" class="text-white me-2"
+                    ><i class="fas fa-credit-card fa-2x"></i
+                  ></a>
+                  <a href="#" class="text-white me-2"
+                    ><i class="fab fa-cc-mastercard fa-2x"></i
+                  ></a>
+                  <a href="#" class="text-white me-2"
+                    ><i class="fab fa-cc-paypal fa-2x"></i
+                  ></a>
+                  <a href="#" class="text-white"
+                    ><i class="fab fa-cc-discover fa-2x"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer End -->
+      <div class="copy-right_text">
+        <div class="container">
+          <div class="footer_border"></div>
+          <div class="row">
+            <div class="col-xl-12">
+              <p class="copy_right text-center">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+                All rights reserved | This template is made with
+                <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal -->
+    <div
+      class="modal fade custom_search_pop"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="serch_form">
+            <input type="text" placeholder="Search" />
+            <button type="submit">search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- link that opens popup -->
+    <!--     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"> </script> -->
+    <!-- JS here -->
+    <script src="{%static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{%static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{%static 'js/popper.min.js' %}"></script>
+    <script src="{%static 'js/bootstrap.min.js' %}"></script>
+    <script src="{%static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{%static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{%static 'js/ajax-form.js' %}"></script>
+    <script src="{%static 'js/waypoints.min.js' %}"></script>
+    <script src="{%static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{%static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{%static 'js/scrollIt.js' %}"></script>
+    <script src="{%static 'js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{%static 'js/wow.min.js' %}"></script>
+    <script src="{%static 'js/nice-select.min.js' %}"></script>
+    <script src="{%static 'js/jquery.slicknav.min.js' %}"></script>
+    <script src="{%static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{%static 'js/plugins.js' %}"></script>
+    <script src="{%static 'js/gijgo.min.js' %}"></script>
+    <script src="{%static 'js/slick.min.js' %}"></script>
+
+    <!--contact js-->
+    <script src="{%static 'js/contact.js' %}"></script>
+    <script src="{%static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{%static 'js/jquery.form.js' %}"></script>
+    <script src="{%static 'js/jquery.validate.min.js' %}"></script>
+    <script src="{%static 'js/mail-script.js' %}"></script>
+
+    <script src="{%static 'js/main.js' %}"></script>
+    <script>
+      $("#datepicker").datepicker({
+        iconsLibrary: "fontawesome",
+        icons: {
+          rightIcon: '<span class="fa fa-caret-down"></span>',
+        },
+      });
+    </script>
+  </body>
+</html>

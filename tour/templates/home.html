@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TravelEase</title>
+    </head>
+
+    <body>
+
+        {% block content %}
+        <div class="container-fluid bg-primary px-5 d-none d-lg-block">
+            <div class="row gx-0">
+                <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center" style="height: 45px;">
+
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <div class="d-inline-flex align-items-center" style="height: 45px;">
+                        <a href="#" data-bs-toggle="dropdown"><small class="me-3 text-light"><i
+                                    class="fa fa-user me-2"></i>Register</small></a>
+                        <div class="dropdown-menu rounded">
+                            <a href="{% url 'user_register' %}" class="dropdown-item"><i
+                                   ></i> User</a>
+                            <a href="{% url 'vendor_register' %}" class="dropdown-item"><i
+                                    ></i> Vendor</a>
+                        </div>
+                        <a href="{% url 'login' %}"><small class="me-3 text-light"><i
+                                    class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        {% include 'base.html' %}
+        {% endblock %}
+
+    </body>
+
+</html>

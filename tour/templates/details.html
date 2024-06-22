@@ -90,7 +90,7 @@
           class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
         >
           <a href="" class="navbar-brand p-0">
-            <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Traveli</h1>
+            <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>TravelEase</h1>
             <!-- <img src="img/logo.png" alt="Logo"> -->
           </a>
           <button
@@ -101,20 +101,13 @@
           >
             <span class="fa fa-bars"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-0">
-              <a href="index.html" class="nav-item nav-link active">Home</a>
-              <a href="about.html" class="nav-item nav-link">About</a>
-              <a href="services.html" class="nav-item nav-link">Services</a>
-              <a href="packages.html" class="nav-item nav-link">Packages</a>
-              <a href="contact.html" class="nav-item nav-link">Contact</a>
-            </div>
-          </div>
+          
         </nav>
                                 
     <!-- header-end -->
     {% block content %}
         <form action="{% url 'booking' user.id vendor.id details.id %}" method="post">
+          {% csrf_token %}
         <div class="carousel-header">
             <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
               <ol class="carousel-indicators">

@@ -53,10 +53,11 @@
 <body>
   {% block content %}
   <h1>Book Your Tour</h1>
-  <form method="post" action="{% url 'success' %}">
+  <form id="payment-form">
     {% csrf_token %}
     <label for="destination">Destination Name:</label><br>
     <input type="text" id="destination" name="destination" value="{{ package.destin }}" required><br>
+    
     
     <label for="duration">Duration (days):</label><br>
     <input type="number" id="duration" name="duration" value="{{ package.duration }}" required><br>
@@ -80,50 +81,53 @@
     <input type="number" id="kids" name="kids" required><br>
     
     <input type="submit"  id="rzp-button1" value="Proceed to make payment">
+  <!-- Your form fields here -->
+</form>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-var options = {
-    "key": "rzp_test_wnleZz1Zk9xzDF", // Enter the Key ID generated from the Dashboard
-    "amount": "3500000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    "currency": "INR",
-    "name": "{{booking.vendor.oname}}", //your business name
-    "description": "Test Transaction",
-    "image": "https://example.com/your_logo",
-    "order_id": "{{orderid}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "handler": function (response){
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature)
-    },
-    "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
-        "name": "Gaurav Kumar", //your customer's name
-        "email": "gaurav.kumar@example.com", 
-        "contact": "9000090000"  //Provide the customer's phone number for better conversion rates 
-    },
-    "notes": {
-        "address": "Razorpay Corporate Office"
-    },
-    "theme": {
-        "color": "#3399cc"
-    }
-};
-var rzp1 = new Razorpay(options);
-rzp1.on('payment.failed', function (response){
-        alert(response.error.code);
-        alert(response.error.description);
-        alert(response.error.source);
-        alert(response.error.step);
-        alert(response.error.reason);
-        alert(response.error.metadata.order_id);
-        alert(response.error.metadata.payment_id);
+document.getElementById('rzp-button1').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    var amount = "{{ package.price }}";
+    var price = parseInt(amount) * 100;
+
+    var options = {
+        "key": "rzp_test_wnleZz1Zk9xzDF", // Your Razorpay API key
+        "amount": 500000, // Amount in paisa
+        "currency": "INR",
+        "name": "{{ vendor.oname }}", // Business name from context
+        "description": "Test Transaction",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5iMyIl3H-gvgs5XGQ7MLKLgerI06GaD947kD1JvE1Sw&s", // URL of your logo
+        "order_id": "{{ orderid }}", // Order ID from context
+        "handler": function(response) {
+            // Handle payment success
+            alert(response.razorpay_payment_id);
+            alert(response.razorpay_order_id);
+            alert(response.razorpay_signature);
+            
+            // Submit the form after successful payment
+            document.getElementById('payment-form').submit();
+        },
+        "prefill": {
+            "name": "{{ user.name }}", // Customer's name from context
+            "email": "{{ user.email }}", // Customer's email from context
+            "contact": "{{ user.phone }}" // Customer's phone number from context
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office" // Additional notes, if any
+        },
+        "theme": {
+            "color": "#3399cc" // Customize the color theme
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    rzp1.open(); // Open Razorpay checkout
 });
-document.getElementById('rzp-button1').onclick = function(e){
-    rzp1.open();
-    e.preventDefault();
-}
 </script>
-</form>
+
+
 
 {% endblock %}
 

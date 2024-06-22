@@ -67,11 +67,12 @@ def login(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         user_type = request.POST.get('user_type')
+        print(user_type)
         if(user_type=='user'):
             try:
                 data=Customer.objects.get(email=email,password=password)
                 if data:
-                    return render(request,'user.html',{'data':data})
+                    return redirect('user', uid=data.id)
                 else:
                     error_message = "Invalid credentials. Please try again."
             except:
@@ -81,7 +82,7 @@ def login(request):
             try:
                 data=Vendor.objects.get(email=email,password=password)
                 if data:
-                    return render(request,'vendor.html',{'data':data})
+                     return redirect('vendor', vid=data.id)
                 else:
                     error_message = "Invalid credentials. Please try again."
             except:
@@ -208,21 +209,22 @@ from django.conf import settings
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt	
 
-def booking(request,uid,vid,pid):
-    vendor=Vendor.objects.get(id=vid)
-    user=Customer.objects.get(id=uid)
-    package=Package.objects.get(id=pid)
+def booking(request, uid, vid, pid):
+    vendor = Vendor.objects.get(id=vid)
+    user = Customer.objects.get(id=uid)
+    package = Package.objects.get(id=pid)
     context = {
         'vendor': vendor,
         'package': package,
-	    'user':user,
-        }
-  
-    if request.method == 'POST':             
-        amount =int(request.POST.get('price'))*100 
-      
-         
-        client = razorpay.Client(auth=('rzp_test_wnleZz1Zk9xzDF','waK12xnK4ieU48EHtC9ULeKd'))
+        'user': user,
+    }
+
+    if request.method == 'POST':
+        # Retrieve the price from the Package model
+        price = package.price
+        amount = int(price) * 100
+
+        client = razorpay.Client(auth=('rzp_test_wnleZz1Zk9xzDF', 'waK12xnK4ieU48EHtC9ULeKd'))
         payment_data = {
             'amount': amount,
             'currency': 'INR',
@@ -230,23 +232,22 @@ def booking(request,uid,vid,pid):
             'payment_capture': 1  # Auto capture payment
         }
         order = client.order.create(data=payment_data)
-        order_id=order['id']
+        order_id = order['id']
         print(order)
-        expiry_date=datetime.datetime.now()+datetime.timedelta(day=30)
-        booking=Booking.objects.create(user=user,package=package,vendor=vendor,booking_date=datetime.datetime.now(),expiry_date=expiry_date)
+        expiry_date = datetime.datetime.now() + datetime.timedelta(days=30)
+        booking = Booking.objects.create(user=user, package=package, vendor=vendor,
+                                          booking_date=datetime.datetime.now(), expiry_date=expiry_date)
         booking.save()
-        context1={
-            'amount':amount,
-            'order':order,
-            'booking':booking,
-            'orderid':order_id,
-            
+        context1 = {
+            'amount': amount,
+            'order': order,
+            'booking': booking,
+            'orderid': order_id,
         }
-        
-        return render(request,"package_booking.html",context1)
-     
-    return render(request, 'package_booking.html',context)
-    
+        return render(request, "package_booking.html", context1)
+
+    return render(request, 'package_booking.html', context)
+
 @csrf_exempt
 def success(request):
     return render(request, 'success.html')
@@ -275,4 +276,11 @@ def package_admin(request):
 
 def logout(request):
     return render(request,"home.html")
+
+# @login_required
+def booking_history(request,uid):
+    user = Customer.objects.get(id=uid)
+    user_bookings = Booking.objects.filter(customer__email=user.email)
+    
+    return render(request, 'booking_history.html', {'user_bookings': user_bookings})
 

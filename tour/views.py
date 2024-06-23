@@ -82,7 +82,7 @@ def login(request):
             try:
                 data=Vendor.objects.get(email=email,password=password)
                 if data:
-                     return redirect('vendor', vid=data.id)
+                    return redirect('vendor', vid=data.id)
                 else:
                     error_message = "Invalid credentials. Please try again."
             except:
